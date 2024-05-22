@@ -34,14 +34,14 @@ connection.connect((err) => {
 
 const app = express();
 
-axios('https://quotes.toscrape.com/')
+axios('https://www.bbc.com/news')
   .then(res => {
     const htmlData = res.data;
     const $ = Cheerio.load(htmlData);
     const articles = [];
 
-    $('.quote', htmlData).each((index, element) => {
-      const title = $(element).children('.text').text();
+    $('h2.sc-4fedabc7-3.zTZri', htmlData).each((index, element) => {
+      const title = $(element).text().trim();
       // const titileUrl = $(element).children('sc-4fedabc7-3 zTZri')
       articles.push({
         title
